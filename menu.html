@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Night Hood Menu</title>
+    <style>
+        /* General Styles */
+        .imperial-script-regular {
+            font-family: "Imperial Script", cursive;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: rgb(2,0,36);
+            background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(209,217,14,1) 0%, rgba(255,255,255,1) 62%, rgba(255,229,177,1) 100%, rgba(0,212,255,1) 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+/* Other styles remain unchanged */
+
+
+        h1 {
+            text-align: center;
+            color: #000000; /* Yellow text */
+            font-family: 'Brush Script MT', cursive; /* Cursive font style */
+            font-size: 3rem; /* Increase font size */
+            margin-top: 20px;
+        }
+ 
+        .menu-section {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #001f3f; /* Navy blue */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .menu-section h2 {
+            color: #ffeb3b; /* Yellow text */
+            font-family: 'Courier New', Courier, monospace; /* Different font style */
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
+            margin-bottom: 16px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .item-name {
+            font-weight: bold;
+            font-size: 1rem;
+            color: #fff; /* White text */
+        }
+
+        .item-price {
+            color: #ccc; /* Light gray */
+            font-size: 0.9rem;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-control button {
+            background-color: #ffeb3b; /* Yellow button */
+            color: #000; /* Black text */
+            border: none;
+            width: 30px;
+            height: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-left: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .quantity-control button:hover {
+            background-color: #ffd600; /* Darker yellow on hover */
+            transform: scale(1.1);
+        }
+
+        .quantity-control button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+
+        .quantity {
+            width: 30px;
+            text-align: center;
+            font-size: 1rem;
+            border: none;
+            background: transparent;
+            outline: none;
+            color: #fff; /* White text */
+        }
+
+        /* Total Section */
+        .total-section {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .total-section h3 {
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .total-details {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .total-bill {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="imperial-script-regular">Night Hood</h1>
+
+    <!-- Breakfast Section -->
+    <div class="menu-section">
+        <h2>Breakfast</h2>
+        <div class="menu-item">
+            <div class="item-details">
+                <span class="item-name">Chicken Burger</span>
+                <span class="item-price">₹225</span>
+            </div>
+            <div class="quantity-control">
+                <input type="text" id="breakfast1" class="quantity" value="0" readonly>
+                <button onclick="decreaseQuantity('breakfast1', 'Chicken Burger', 225)">-</button>
+                <button onclick="increaseQuantity('breakfast1', 'Chicken Burger', 225)">+</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-details">
+                <span class="item-name">Paneer Burger</span>
+                <span class="item-price">₹200</span>
+            </div>
+            <div class="quantity-control">
+                <input type="text" id="breakfast2" class="quantity" value="0" readonly>
+                <button onclick="decreaseQuantity('breakfast2', 'Paneer Burger', 200)">-</button>
+                <button onclick="increaseQuantity('breakfast2', 'Paneer Burger', 200)">+</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-details">
+                <span class="item-name">Chicken Steaks</span>
+                <span class="item-price">₹250</span>
+            </div>
+            <div class="quantity-control">
+                <input type="text" id="breakfast3" class="quantity" value="0" readonly>
+                <button onclick="decreaseQuantity('breakfast3', 'Chicken Steaks', 250)">-</button>
+                <button onclick="increaseQuantity('breakfast3', 'Chicken Steaks', 250)">+</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-details">
+                <span class="item-name">Paneer Greek Caesar Salad</span>
+                <span class="item-price">₹300</span>
+            </div>
+            <div class="quantity-control">
+                <input type="text" id="breakfast4" class="quantity" value="0" readonly>
+                <button onclick="decreaseQuantity('breakfast4', 'Paneer Greek Caesar Salad', 300)">-</button>
+                <button onclick="increaseQuantity('breakfast4', 'Paneer Greek Caesar Salad', 300)">+</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-details">
+                <span class="item-name">Chicken Soup</span>
+                <span class="item-price">₹180</span>
+            </div>
+            <div class="quantity-control">
+                <input type="text" id="breakfast5" class="quantity" value="0" readonly>
+                <button onclick="decreaseQuantity('breakfast5', 'Chicken Soup', 180)">-</button>
+                <button onclick="increaseQuantity('breakfast5', 'Chicken Soup', 180)">+</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-details">
+                <span class="item-name">Chicken Cheese Burger</span>
+                <span class="item-price">₹250</span>
+            </div>
+            <div class="quantity-control">
+                <input type="text" id="breakfast6" class="quantity" value="0" readonly>
+                <button onclick="decreaseQuantity('breakfast6', 'Chicken Cheese Burger', 250)">-</button>
+                <button onclick="increaseQuantity('breakfast6', 'Chicken Cheese Burger', 250)">+</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-details">
+                <span class="item-name">French Fries</span>
+                <span class="item-price">₹200</span>
+            </div>
+            <div class="quantity-control">
+                <input type="text" id="breakfast7" class="quantity" value="0" readonly>
+                <button onclick="decreaseQuantity('breakfast7', 'French Fries', 200)">-</button>
+                <button onclick="increaseQuantity('breakfast7', 'French Fries', 200)">+</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-details">
+                <span class="item-name">Cheese Shots</span>
+                <span class="item-price">₹280</span>
+            </div>
+            <div class="quantity-control">
+                <input type="text" id="breakfast8" class="quantity" value="0" readonly>
+                <button onclick="decreaseQuantity('breakfast8', 'Cheese Shots', 280)">-</button>
+                <button onclick="increaseQuantity('breakfast8', 'Cheese Shots', 280)">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lunch Section -->
+    <div class="menu-section">
+        <h2>Lunch</h2>
+        <div class="menu-item">
+            <div class="item-details">
+                <span class="item-name">Chicken Bruschetta</span>
+                <span class="item-price">₹280</span>
+            </div>
+            <div class="quantity-control">
+                <input type="text" id="lunch1" class="quantity" value="0" readonly>
+                <button onclick="decreaseQuantity('lunch1', 'Chicken Bruschetta', 280)">-</button>
+                <button onclick="increaseQuantity('lunch1', 'Chicken Bruschetta', 280)">+</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-details">
+                <span class="item-name">Chicken Platter</span>
+                <span class="item-price">₹300</span>
+            </div>
+            <div class="quantity-control">
+                <input type="text" id="lunch2" class="quantity" value="0" readonly>
+                <button onclick="decreaseQuantity('lunch2', 'Chicken Platter', 300)">-</button>
+                <button onclick="increaseQuantity('lunch2', 'Chicken Platter', 300)">+</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-details">
+                <span class="item-name">Prawns Grilled</span>
+                <span class="item-price">₹450</span>
+            </div>
+            <div class="quantity-control">
+                <input type="text" id="lunch3" class="quantity" value="0" readonly>
+                <button onclick="decreaseQuantity('lunch3', 'Prawns Grilled', 450)">-</button>
+                <button onclick="increaseQuantity('lunch3', 'Prawns Grilled', 450)">+</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-details">
+                <span class="item-name">Chicken Biryani</span>
+                <span class="item-price">₹300</span>
+            </div>
+            <div class="quantity-control">
+                <input type="text" id="lunch4" class="quantity" value="0" readonly>
+                <button onclick="decreaseQuantity('lunch4', 'Chicken Biryani', 300)">-</button>
+                <button onclick="increaseQuantity('lunch4', 'Chicken Biryani', 300)">+</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-details">
+                <span class="item-name">Chicken Kebabs</span>
+                <span class="item-price">₹380</span>
+            </div>
+            <div class="quantity-control">
+                <input type="text" id="lunch5" class="quantity" value="0" readonly>
+                <button onclick="decreaseQuantity('lunch5', 'Chicken Kebabs', 380)">-</button>
+                <button onclick="increaseQuantity('lunch5', 'Chicken Kebabs', 380)">+</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-details">
+                <span class="item-name">Mushroom Rhodes</span>
+                <span class="item-price">₹200</span>
+            </div>
+            <div class="quantity-control">
+                <input type="text" id="lunch6" class="quantity" value="0" readonly>
+                <button onclick="decreaseQuantity('lunch6', 'Mushroom Rhodes', 200)">-</button>
+                <button onclick="increaseQuantity('lunch6', 'Mushroom Rhodes', 200)">+</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-details">
+                <span class="item-name">Butter Garlic Prawns</span>
+                <span class="item-price">₹500</span>
+            </div>
+            <div class="quantity-control">
+                <input type="text" id="lunch7" class="quantity" value="0" readonly>
+                <button onclick="decreaseQuantity('lunch7', 'Butter Garlic Prawns', 500)">-</button>
+                <button onclick="increaseQuantity('lunch7', 'Butter Garlic Prawns', 500)">+</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-details">
+                <span class="item-name">Paneer Biryani</span>
+                <span class="item-price">₹280</span>
+            </div>
+            <div class="quantity-control">
+                <input type="text" id="lunch8" class="quantity" value="0" readonly>
+                <button onclick="decreaseQuantity('lunch8', 'Paneer Biryani', 280)">-</button>
+                <button onclick="increaseQuantity('lunch8', 'Paneer Biryani', 280)">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dinner Section -->
+    <div class="menu-section">
+        <h2>Dinner</h2>
+        <div class="menu-item">
+            <div class="item-details">
+                <span class="item-name">Green Curry</span>
+                <span class="item-price">₹280</span>
+            </div>
+            <div class="quantity-control">
+                <input type="text" id="dinner1" class="quantity" value="0" readonly>
+                <button onclick="decreaseQuantity('dinner1', 'Green Curry', 280)">-</button>
+                <button onclick="increaseQuantity('dinner1', 'Green Curry', 280)">+</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-details">
+                <span class="item-name">Vegetable Stew</span>
+                <span class="item-price">₹300</span>
+            </div>
+            <div class="quantity-control">
+                <input type="text" id="dinner2" class="quantity" value="0" readonly>
+                <button onclick="decreaseQuantity('dinner2', 'Vegetable Stew', 300)">-</button>
+                <button onclick="increaseQuantity('dinner2', 'Vegetable Stew', 300)">+</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-details">
+                <span class="item-name">Prawns Kebabs</span>
+                <span class="item-price">₹500</span>
+            </div>
+            <div class="quantity-control">
+                <input type="text" id="dinner3" class="quantity" value="0" readonly>
+                <button onclick="decreaseQuantity('dinner3', 'Prawns Kebabs', 500)">-</button>
+                <button onclick="increaseQuantity('dinner3', 'Prawns Kebabs', 500)">+</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-details">
+                <span class="item-name">Veg Margarita</span>
+                <span class="item-price">₹350</span>
+            </div>
+            <div class="quantity-control">
+                <input type="text" id="dinner4" class="quantity" value="0" readonly>
+                <button onclick="decreaseQuantity('dinner4', 'Veg Margarita', 350)">-</button>
+                <button onclick="increaseQuantity('dinner4', 'Veg Margarita', 350)">+</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-details">
+                <span class="item-name">Chicken Margarita</span>
+                <span class="item-price">₹380</span>
+            </div>
+            <div class="quantity-control">
+                <input type="text" id="dinner5" class="quantity" value="0" readonly>
+                <button onclick="decreaseQuantity('dinner5', 'Chicken Margarita', 380)">-</button>
+                <button onclick="increaseQuantity('dinner5', 'Chicken Margarita', 380)">+</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-details">
+                <span class="item-name">Chicken Drumsticks</span>
+                <span class="item-price">₹380</span>
+            </div>
+            <div class="quantity-control">
+                <input type="text" id="dinner6" class="quantity" value="0" readonly>
+                <button onclick="decreaseQuantity('dinner6', 'Chicken Drumsticks', 380)">-</button>
+                <button onclick="increaseQuantity('dinner6', 'Chicken Drumsticks', 380)">+</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-details">
+                <span class="item-name">Vegetable Mix</span>
+                <span class="item-price">₹290</span>
+            </div>
+            <div class="quantity-control">
+                <input type="text" id="dinner7" class="quantity" value="0" readonly>
+                <button onclick="decreaseQuantity('dinner7', 'Vegetable Mix', 290)">-</button>
+                <button onclick="increaseQuantity('dinner7', 'Vegetable Mix', 290)">+</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-details">
+                <span class="item-name">Paneer Green Curry</span>
+                <span class="item-price">₹300</span>
+            </div>
+            <div class="quantity-control">
+                <input type="text" id="dinner8" class="quantity" value="0" readonly>
+                <button onclick="decreaseQuantity('dinner8', 'Paneer Green Curry', 300)">-</button>
+                <button onclick="increaseQuantity('dinner8', 'Paneer Green Curry', 300)">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total Section -->
+   <!-- Total Section -->
+<div class="total-section">
+    <h3>Total Bill</h3>
+    <div class="total-details">
+        <span id="total-items">Items: 0</span><br>
+        <div id="item-names"></div>
+        <span id="total-amount">Total: ₹0</span>
+    </div>
+</div>
+
+
+    <script>
+        let totalItems = 0;
+let totalAmount = 0;
+let itemNames = [];
+
+function increaseQuantity(id, name, price) {
+    const quantityInput = document.getElementById(id);
+    let quantity = parseInt(quantityInput.value);
+    quantity++;
+    quantityInput.value = quantity;
+    updateTotal(price, name);
+}
+
+function decreaseQuantity(id, name, price) {
+    const quantityInput = document.getElementById(id);
+    let quantity = parseInt(quantityInput.value);
+    if (quantity > 0) {
+        quantity--;
+        quantityInput.value = quantity;
+        updateTotal(-price, name);
+    }
+}
+
+function updateTotal(amount, name) {
+    totalAmount += amount;
+    if (amount > 0) {
+        totalItems++;
+        itemNames.push(name);
+    } else {
+        totalItems--;
+        itemNames = itemNames.filter(item => item !== name);
+    }
+    
+    document.getElementById('total-amount').innerText = `Total: ₹${totalAmount}`;
+    document.getElementById('total-items').innerText = `Items: ${totalItems}`;
+    document.getElementById('item-names').innerHTML = itemNames.length > 0 ? `Added Items: ${itemNames.join(', ')}` : 'No items added';
+}
+
+    </script>
+
+</body>
+</html>
